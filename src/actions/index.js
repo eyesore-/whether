@@ -25,6 +25,11 @@ export const getLocation = location => ({
 export const getLocationAsync = () => dispatch => {
   return geolocate()
     .then(data => {
-      dispatch(getLocation(data.results[0].address_components[1]))
+      let locale = data.results[0]
+      dispatch(getLocation({
+        name: locale.address_components[1].short_name,
+        latitude: locale.geometry.location.lat,
+        longitude: locale.geometry.location.lng
+      }))
     })
 }
