@@ -1,11 +1,12 @@
 let API_KEY = 'AIzaSyCziMqLH9SOOlx-xisQInYRQhzQT0sIGDc'
 const URI = {
   geolocate: 'https://www.googleapis.com/geolocation/v1/geolocate?key=',
-  geocode: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
+  geocode: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=',
+  geocodeOptions: '&result_type=postal_code'
 }
 
 let geocode = (lat, lng) => {
-  return fetch(`${URI.geocode}${lat},${lng}&key=${API_KEY}`,
+  return fetch(`${URI.geocode}${lat},${lng}${URI.geocodeOptions}&key=${API_KEY}`,
     {method: 'GET'})
     .then(res => res.json())
 }
@@ -20,3 +21,10 @@ export const getLocation = location => ({
   type: 'GET_LOCATION',
   payload: location
 })
+
+export const getLocationAsync = () => dispatch => {
+  return geolocate()
+    .then(data => {
+      dispatch(getLocation(data.results[0]))
+    })
+}
