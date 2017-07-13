@@ -1,8 +1,9 @@
 const location = (state = {}, action) => {
   switch (action.type) {
     case 'GET_LOCATION':
-      console.log(action)
-      return state
+      return {
+        location: action.payload.short_name
+      }
     default:
       return state
   }

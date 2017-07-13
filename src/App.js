@@ -6,9 +6,12 @@ import { getLocationAsync } from './actions/index'
 const Button = ({label, handleClick}) =>
   <button onClick={handleClick}>{label}</button>
 
-const mapStateToProps = () => ({
-  label: 'LOCATE!'
-})
+const mapStateToProps = (state) => {
+  console.log('state', state)
+  return {
+    label: state.location || 'LOCATE!'
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   handleClick: () => { dispatch(getLocationAsync()) }

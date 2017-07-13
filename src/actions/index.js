@@ -25,6 +25,6 @@ export const getLocation = location => ({
 export const getLocationAsync = () => dispatch => {
   return geolocate()
     .then(data => {
-      dispatch(getLocation(data.results[0]))
+      dispatch(getLocation(data.results[0].address_components[1]))
     })
 }
