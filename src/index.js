@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import location from './reducers/location'
 import App from './App'
+import { getLocationAsync } from './actions/index'
 import registerServiceWorker from './registerServiceWorker'
 
 let store = createStore(location, applyMiddleware(thunkMiddleware))
@@ -17,4 +18,5 @@ render(
   document.getElementById('root')
 )
 
+store.dispatch(getLocationAsync())
 registerServiceWorker()

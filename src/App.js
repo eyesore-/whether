@@ -3,22 +3,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getLocationAsync } from './actions/index'
 
-const Button = ({name, lat, lng, handleClick}) => {
-  console.log(name, lat, lng)
+const Button = ({name, handleClick}) => {
   return (
     <div>
       <button onClick={handleClick}>Locate!</button>
-      <div>{name} {lat}{lng}</div>
+      <div>{name}</div>
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
-  console.log('state', state)
   return {
-    name: state.name,
-    lat: state.latitude,
-    lng: state.longitude
+    name: state.name
   }
 }
 
