@@ -4,12 +4,12 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import location from './reducers/location'
+import weatherApp from './reducers/index'
 import App from './App'
 import { getLocationAsync } from './actions/index'
 import registerServiceWorker from './registerServiceWorker'
 
-let store = createStore(location, applyMiddleware(thunkMiddleware))
+let store = createStore(weatherApp, applyMiddleware(thunkMiddleware))
 
 render(
   <Provider store={store}>
