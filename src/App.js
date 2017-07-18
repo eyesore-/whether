@@ -2,8 +2,12 @@
 
 import React from 'react'
 import Location from './component/location'
+import Weather from './component/currentWeather'
 
 const App = () =>
-  <Location></Location>
+  <div>
+    <Location></Location>
+    <Weather></Weather>
+  </div>
 
 export default App
