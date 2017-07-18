@@ -1,29 +1,9 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+
 import React from 'react'
-import { connect } from 'react-redux'
-import { getLocationAsync } from './action/index'
+import Location from './component/location'
 
-const Button = ({ name, handleClick }) => {
-  return (
-    <div>
-      <button onClick={handleClick}>Locate</button>
-      <div>
-        {name}
-      </div>
-    </div>
-  )
-}
-
-const mapStateToProps = state => {
-  return {
-    name: state.location.name
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  handleClick: () => { dispatch(getLocationAsync()) }
-})
-
-const App = connect(mapStateToProps, mapDispatchToProps)(Button)
+const App = () =>
+  <Location></Location>
 
 export default App
