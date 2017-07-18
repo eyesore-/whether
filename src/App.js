@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Location from './component/location'
-import Weather from './component/currentWeather'
+import Weather from './component/weather'
 
 const App = () =>
   <div>
