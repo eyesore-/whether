@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { connect } from 'react-redux'
-import { unix } from 'moment'
 import Temperature from './temperature'
 import PrecipProbability from './precipProbability'
+import Time from './time'
 
 let Weather = ({current, hour}) =>
   current ? <div>
     <Temperature temperature={current.temperature}></Temperature>
     {hour.data.map(hr =>
       <div key={hr.time}>
-        <span>{unix(hr.time).format('ddd MM DD YY HH:mm')} </span>
+        <Time timestamp={hr.time}></Time>
         <Temperature temperature={hr.temperature}></Temperature>
         <PrecipProbability chanceOfPrecip={hr.precipProbability}>
         </PrecipProbability>
