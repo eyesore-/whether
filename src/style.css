@@ -1,3 +1,6 @@
 html {
   font-family: sans-serif;
 }
+ span {
+   padding: 3px;
+ }
