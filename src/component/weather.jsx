@@ -8,8 +8,9 @@ let Weather = ({current, hour}) =>
     <div>{Math.round(current.temperature)}</div>
     {hour.data.map(hr =>
       <div key={hr.time}>
-        <span>{unix(hr.time).format('dd MM DD YY HH:mm')} </span>
-        <span>{Math.round(hr.temperature)}</span>
+        <span>{unix(hr.time).format('ddd MM DD YY HH:mm')} </span>
+        <span>{Math.round(hr.temperature)} </span>
+        <span>{`${Math.round(hr.precipProbability * 100)}%`}</span>
       </div>
     )}
   </div> : <div></div>
