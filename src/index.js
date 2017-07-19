@@ -8,6 +8,7 @@ import weatherApp from './reducer/index'
 import App from './App'
 import { getLocationAsync } from './action/index'
 import registerServiceWorker from './registerServiceWorker'
+import './style.css'
 
 let store = createStore(weatherApp, applyMiddleware(thunkMiddleware))
 

@@ -7,7 +7,7 @@ import PrecipProbability from './precipProbability'
 
 let Weather = ({current, hour}) =>
   current ? <div>
-    <div>{Math.round(current.temperature)}</div>
+    <Temperature temperature={current.temperature}></Temperature>
     {hour.data.map(hr =>
       <div key={hr.time}>
         <span>{unix(hr.time).format('ddd MM DD YY HH:mm')} </span>
