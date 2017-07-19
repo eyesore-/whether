@@ -1,13 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { connect } from 'react-redux'
+import { unix } from 'moment'
 
 let Weather = ({current, hour}) =>
   current ? <div>
     <div>{Math.round(current.temperature)}</div>
     {hour.data.map(hr =>
       <div key={hr.time}>
-        <span>{hr.time}</span> <span>{Math.round(hr.temperature)}</span>
+        <span>{unix(hr.time).format('dd MM DD YY HH:mm')} </span>
+        <span>{Math.round(hr.temperature)}</span>
       </div>
     )}
   </div> : <div></div>
