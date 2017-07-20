@@ -4,8 +4,8 @@ const weather = (state = {}, action) => {
       console.log(action.payload)
       return {
         current: action.payload.currently,
-        hour: action.payload.hourly,
-        day: action.payload.daily
+        hours: action.payload.hourly,
+        days: action.payload.daily
       }
     default:
       return state

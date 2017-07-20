@@ -1,6 +1,16 @@
 html {
   font-family: sans-serif;
 }
- span {
-   padding: 3px;
- }
+
+div {
+  padding: 3px;
+}
+
+.hourly-forecast {
+  width: 500vw;
+  overflow: scroll;
+}
+
+.hour {
+  display: inline-block;
+}

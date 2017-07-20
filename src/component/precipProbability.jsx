@@ -2,8 +2,8 @@
 import React from 'react'
 
 const PrecipProbability = ({chanceOfPrecip}) =>
-  <span>
+  <div>
     {chanceOfPrecip ? `${Math.round(chanceOfPrecip * 100)}%` : ''}
-  </span>
+  </div>
 
 export default PrecipProbability

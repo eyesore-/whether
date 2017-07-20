@@ -2,20 +2,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Temperature from './temperature'
-import PrecipProbability from './precipProbability'
-import Time from './time'
+import HourForecast from './hourForecast'
 
-let Weather = ({current, hour}) =>
+let Weather = ({current, hours}) =>
   current ? <div>
     <Temperature temperature={current.temperature}></Temperature>
-    {hour.data.map(hr =>
-      <div key={hr.time}>
-        <Time timestamp={hr.time}></Time>
-        <Temperature temperature={hr.temperature}></Temperature>
-        <PrecipProbability chanceOfPrecip={hr.precipProbability}>
-        </PrecipProbability>
-      </div>
-    )}
+    <HourForecast hours={hours}></HourForecast>
   </div> : <div></div>
 
 const mapStateToProps = state => {
