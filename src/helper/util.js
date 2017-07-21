@@ -15,7 +15,7 @@ export const weather = (lat, lng) => {
     .then(res => res.json())
 }
 
-const geocode = (lat, lng) => {
+export const geocode = (lat, lng) => {
   let requestURL = `${URI.geocode}${lat},${lng}${URI.geocodeOps}&key=${GOOGLE_KEY}`
   return fetch(requestURL)
     .then(res => res.json())
@@ -39,8 +39,22 @@ export const setLocalStorage = (object) => {
 }
 
 export const getUserLocation = () => {
-  return getPosition()
-    .catch(info => {
-      return geolocate()
-    })
+  return new Promise((resolve, reject) => {
+    getPosition()
+      .then(({coords}) => resolve(
+        {
+          lat: coords.latitude,
+          lng: coords.longitude
+        }))
+      .catch(info => {
+        geolocate()
+          .then(({location}) => resolve(
+            {
+              lat: location.lat,
+              lng: location.lng
+            }
+          ))
+          .catch(error => reject(error))
+      })
+  })
 }
