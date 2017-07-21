@@ -38,6 +38,8 @@ export const setLocalStorage = (object) => {
   }
 }
 
+// TODO: refactor below code to chain Promise instead of
+// weird inception promises
 export const getUserLocation = () => {
   return new Promise((resolve, reject) => {
     getPosition()

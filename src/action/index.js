@@ -1,4 +1,4 @@
-import { weather, geocode, getPosition } from '../helper/util'
+import { getUserLocation, geocode, weather } from '../helper/util'
 
 export const getLocation = location => ({
   type: 'GET_LOCATION',
@@ -11,23 +11,21 @@ export const getWeather = weather => ({
 })
 
 export const getDataAsync = () => dispatch => {
-  getPosition()
-    .then(data => geocode(data.coords.latitude, data.coords.longitude))
-    .then(({results}) => {
-      console.log('Location:', results)
-      let locale = results[0]
-      dispatch(
-        getLocation({
-          name: locale.address_components[1].short_name
+  getUserLocation()
+    .then(location => {
+      geocode(location.lat, location.lng)
+        .then(({results}) => {
+          console.log('Location:', results)
+          let locale = results[0]
+          dispatch(
+            getLocation({
+              name: locale.address_components[1].short_name
+            })
+          )
         })
-      )
-      weather(
-        locale.geometry.location.lat,
-        locale.geometry.location.lng
-      )
-      .then(data => dispatch(getWeather(data)))
-    }
-  )
+      weather(location.lat, location.lng)
+        .then(data => dispatch(getWeather(data)))
+    })
 }
 
 export const getWeatherAsync = (lat, lng) => dispatch => {}
