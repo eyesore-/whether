@@ -24,7 +24,6 @@ export const geocode = (lat, lng) => {
 export const geolocate = () => {
   return fetch(`${URI.geolocate}${GOOGLE_KEY}`, { method: 'POST' })
     .then(res => res.json())
-    .then(data => geocode(data.location.lat, data.location.lng))
 }
 
 export const getPosition = (options) => {
