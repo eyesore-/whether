@@ -46,8 +46,7 @@ export const getUserLocation = () => {
           lat: coords.latitude,
           lng: coords.longitude
         }))
-      .catch(info => {
-        geolocate()
+      .catch(info => geolocate()
           .then(({location}) => resolve(
             {
               lat: location.lat,
@@ -55,6 +54,6 @@ export const getUserLocation = () => {
             }
           ))
           .catch(error => reject(error))
-      })
+      )
   })
 }
