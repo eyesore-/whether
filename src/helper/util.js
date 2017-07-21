@@ -15,18 +15,18 @@ export const weather = (lat, lng) => {
     .then(res => res.json())
 }
 
-export const geocode = (lat, lng) => {
+const geocode = (lat, lng) => {
   let requestURL = `${URI.geocode}${lat},${lng}${URI.geocodeOps}&key=${GOOGLE_KEY}`
   return fetch(requestURL)
     .then(res => res.json())
 }
 
-export const geolocate = () => {
+const geolocate = () => {
   return fetch(`${URI.geolocate}${GOOGLE_KEY}`, { method: 'POST' })
     .then(res => res.json())
 }
 
-export const getPosition = (options) => {
+const getPosition = (options) => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
@@ -40,15 +40,7 @@ export const setLocalStorage = (object) => {
 
 export const getUserLocation = () => {
   return getPosition()
-    .then(({coords}) => geocode(
-      coords.latitude,
-      coords.longitude)
-    )
     .catch(info => {
       return geolocate()
-      .then(({location}) => geocode(
-        location.lat,
-        location.lng
-      ))
     })
 }
