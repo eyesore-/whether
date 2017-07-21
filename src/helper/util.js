@@ -37,3 +37,18 @@ export const setLocalStorage = (object) => {
     localStorage.setItem(key, object[key])
   }
 }
+
+export const getUserLocation = () => {
+  return getPosition()
+    .then(({coords}) => geocode(
+      coords.latitude,
+      coords.longitude)
+    )
+    .catch(info => {
+      return geolocate()
+      .then(({location}) => geocode(
+        location.lat,
+        location.lng
+      ))
+    })
+}
