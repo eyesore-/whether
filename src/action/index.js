@@ -37,7 +37,7 @@ export const getWeather = weather => ({
   payload: weather
 })
 
-export const getLocationAsync = () => dispatch => {
+export const getDataAsync = () => dispatch => {
   geolocate().then(data => {
     let locale = data.results[0]
     dispatch(

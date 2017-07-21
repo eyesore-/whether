@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import weatherApp from './reducer/index'
 import App from './App'
-import { getLocationAsync } from './action/index'
+import { getDataAsync } from './action/index'
 import registerServiceWorker from './registerServiceWorker'
 import './style.css'
 
@@ -19,5 +19,5 @@ render(
   document.getElementById('root')
 )
 
-store.dispatch(getLocationAsync())
+store.dispatch(getDataAsync())
 registerServiceWorker()
