@@ -31,3 +31,9 @@ export const getPosition = (options) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
 }
+
+export const setLocalStorage = (object) => {
+  for (let key in object) {
+    localStorage.setItem(key, object[key])
+  }
+}
