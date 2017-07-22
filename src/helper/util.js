@@ -11,18 +11,23 @@ const URI = {
 
 export const weather = (lat, lng) => {
   const requestURL = `${URI.proxy + URI.weather}/${lat},${lng}?${URI.weatherOps}`
-  const updated = localStorage.updated
-  const shouldUpdate = !updated || Date.now() > updated + 6e5
-  if (shouldUpdate) {
-    return fetch(requestURL)
-      .then(res => res.json())
-  }
+  return fetch(requestURL)
+    .then(res => res.json())
 }
 
 export const geocode = (lat, lng) => {
-  let requestURL = `${URI.geocode}${lat},${lng}${URI.geocodeOps}&key=${GOOGLE_KEY}`
+  const requestURL = `${URI.geocode}${lat},${lng}${URI.geocodeOps}&key=${GOOGLE_KEY}`
   return fetch(requestURL)
     .then(res => res.json())
+}
+
+export const parseGeocode = response => {
+  for (let i = 0; i < response.length; i++) {
+    let componentTypes = response[i].types
+    if (componentTypes.neighborhood || componentTypes.locality) {
+      return { name: response[i].long_name }
+    }
+  }
 }
 
 const geolocate = () => {
