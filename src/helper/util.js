@@ -11,7 +11,7 @@ const URI = {
 
 export const weather = (lat, lng) => {
   const requestURL = `${URI.proxy + URI.weather}/${lat},${lng}?${URI.weatherOps}`
-  const updated = localStorage.lastUpdate
+  const updated = localStorage.updated
   const shouldUpdate = !updated || Date.now() > updated + 6e5
   if (shouldUpdate) {
     return fetch(requestURL)
