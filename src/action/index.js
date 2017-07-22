@@ -1,4 +1,8 @@
-import { getUserLocation, geocode, weather } from '../helper/util'
+import {
+  getUserLocation,
+  geocode, weather,
+  parseGeocode
+} from '../helper/util'
 
 export const getLocation = location => ({
   type: 'GET_LOCATION',
@@ -15,12 +19,8 @@ export const getDataAsync = () => dispatch => {
     .then(location => {
       geocode(location.lat, location.lng)
         .then(({results}) => {
-          console.log('Location:', results)
-          let locale = results[0]
           dispatch(
-            getLocation({
-              name: locale.address_components[1].short_name
-            })
+            getLocation(parseGeocode(results[0].address_components))
           )
         })
       weather(location.lat, location.lng)

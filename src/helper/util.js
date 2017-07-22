@@ -5,7 +5,6 @@ const URI = {
   weatherOps: 'exclude=minutely?flags&units=auto',
   geolocate: 'https://www.googleapis.com/geolocation/v1/geolocate?key=',
   geocode: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=',
-  geocodeOps: '&result_type=postal_code',
   proxy: 'https://cors-anywhere.herokuapp.com/'
 }
 
@@ -16,7 +15,7 @@ export const weather = (lat, lng) => {
 }
 
 export const geocode = (lat, lng) => {
-  const requestURL = `${URI.geocode}${lat},${lng}${URI.geocodeOps}&key=${GOOGLE_KEY}`
+  const requestURL = `${URI.geocode}${lat},${lng}&key=${GOOGLE_KEY}`
   return fetch(requestURL)
     .then(res => res.json())
 }
@@ -24,7 +23,8 @@ export const geocode = (lat, lng) => {
 export const parseGeocode = response => {
   for (let i = 0; i < response.length; i++) {
     let componentTypes = response[i].types
-    if (componentTypes.neighborhood || componentTypes.locality) {
+    if (componentTypes.includes('neighborhood') ||
+      componentTypes.includes('locality')) {
       return { name: response[i].long_name }
     }
   }
