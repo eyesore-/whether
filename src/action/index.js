@@ -28,4 +28,7 @@ export const getDataAsync = () => dispatch => {
     })
 }
 
-export const getWeatherAsync = (lat, lng) => dispatch => {}
+export const getWeatherAsync = (lat, lng) => dispatch => {
+  weather(lat, lng)
+    .then(data => dispatch(getWeather(data)))
+}
