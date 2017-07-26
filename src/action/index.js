@@ -1,6 +1,7 @@
 import {
   getUserLocation,
-  geocode, weather,
+  geocode,
+  weather,
   parseGeocode
 } from '../helper/util'
 
