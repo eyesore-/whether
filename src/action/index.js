@@ -2,7 +2,8 @@ import {
   getUserLocation,
   geocode,
   weather,
-  parseGeocode
+  parseGeocode,
+  setLocalStorage
 } from '../helper/util'
 
 export const getLocation = location => ({
@@ -15,7 +16,7 @@ export const getWeather = weather => ({
   payload: weather
 })
 
-// TODO remove if else
+// TODO trim down function
 export const getDataAsync = () => dispatch => {
   getUserLocation()
     .then(location => {
@@ -28,7 +29,13 @@ export const getDataAsync = () => dispatch => {
       let lastUpdated = localStorage.updated
       if (!lastUpdated || Date.now() > lastUpdated + 6e5) {
         weather(location.lat, location.lng)
-        .then(data => dispatch(getWeather(data)))
+        .then(data => {
+          setLocalStorage({
+            weather: JSON.stringify(data),
+            updated: Date.now()
+          })
+          dispatch(getWeather(data))
+        })
       } else {
         dispatch(getWeather(JSON.parse(localStorage.weather)))
       }

@@ -8,7 +8,6 @@ const URI = {
   proxy: 'https://cors-anywhere.herokuapp.com/'
 }
 
-// TODO revisit use of Promise
 export const weather = (lat, lng) => {
   const url = `${URI.proxy + URI.weather}/${lat},${lng}?${URI.weatherOps}`
   return fetch(url)
