@@ -26,8 +26,9 @@ export const getDataAsync = () => dispatch => {
             getLocation(parseGeocode(results[0].address_components))
           )
         })
-      let lastUpdated = localStorage.updated
-      if (!lastUpdated || Date.now() > lastUpdated + 6e5) {
+      let lastUpdate = localStorage.updated
+        ? JSON.parse(localStorage.updated) : undefined
+      if (!lastUpdate || Date.now() > lastUpdate + 6e5) {
         return weather(location.lat, location.lng)
           .then(data => {
             setLocalStorage({
