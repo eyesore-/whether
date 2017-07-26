@@ -28,17 +28,16 @@ export const getDataAsync = () => dispatch => {
         })
       let lastUpdated = localStorage.updated
       if (!lastUpdated || Date.now() > lastUpdated + 6e5) {
-        weather(location.lat, location.lng)
-        .then(data => {
-          setLocalStorage({
-            weather: JSON.stringify(data),
-            updated: Date.now()
+        return weather(location.lat, location.lng)
+          .then(data => {
+            setLocalStorage({
+              weather: JSON.stringify(data),
+              updated: Date.now()
+            })
+            dispatch(getWeather(data))
           })
-          dispatch(getWeather(data))
-        })
-      } else {
-        dispatch(getWeather(JSON.parse(localStorage.weather)))
       }
+      dispatch(getWeather(JSON.parse(localStorage.weather)))
     })
 }
 
