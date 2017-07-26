@@ -15,6 +15,7 @@ export const getWeather = weather => ({
   payload: weather
 })
 
+// TODO remove if else
 export const getDataAsync = () => dispatch => {
   getUserLocation()
     .then(location => {
@@ -24,8 +25,13 @@ export const getDataAsync = () => dispatch => {
             getLocation(parseGeocode(results[0].address_components))
           )
         })
-      weather(location.lat, location.lng)
+      let lastUpdated = localStorage.updated
+      if (!lastUpdated || Date.now() > lastUpdated + 6e5) {
+        weather(location.lat, location.lng)
         .then(data => dispatch(getWeather(data)))
+      } else {
+        dispatch(getWeather(JSON.parse(localStorage.weather)))
+      }
     })
 }
 

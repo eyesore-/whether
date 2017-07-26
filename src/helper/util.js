@@ -11,12 +11,8 @@ const URI = {
 // TODO revisit use of Promise
 export const weather = (lat, lng) => {
   const url = `${URI.proxy + URI.weather}/${lat},${lng}?${URI.weatherOps}`
-  let lastUpdated = localStorage.updated
-  if (!lastUpdated || Date.now() > lastUpdated + 6e5) {
-    return fetch(url)
-    .then(res => res.json())
-  }
-  return new Promise(resolve => resolve(localStorage.weather))
+  return fetch(url)
+  .then(res => res.json())
 }
 
 export const geocode = (lat, lng) => {
