@@ -1,7 +1,6 @@
 const weather = (state = {}, action) => {
   switch (action.type) {
     case 'GET_WEATHER':
-      console.log('Weather:', action.payload)
       return {
         current: action.payload.currently,
         hours: action.payload.hourly,

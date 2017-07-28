@@ -52,10 +52,7 @@ export const shouldUpdate = (lat, lng) => {
   const lastUpdated = localStorage.updated
     ? JSON.parse(localStorage.updated)
     : undefined
-  console.log('Should Update')
-  console.log(setLocation !== `${lat},${lng}`)
-  console.log(!lastUpdated)
-  console.log(Date.now() >= lastUpdated + 6e5)
+
   return setLocation !== `${lat},${lng}` ||
       !lastUpdated ||
       Date.now() >= lastUpdated + 6e5
