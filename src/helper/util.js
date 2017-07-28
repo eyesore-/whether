@@ -47,6 +47,17 @@ export const setLocalStorage = (object) => {
   }
 }
 
+export const shouldUpdate = (location) => {
+  const setLocation = localStorage.location
+  const lastUpdated = localStorage.updated
+    ? JSON.parse(localStorage.updated)
+    : undefined
+
+  return setLocation !== location ||
+      lastUpdated ||
+      Date.now() >= lastUpdated + 6e5
+}
+
 // TODO: refactor below code to chain Promise instead of
 // weird inception promises
 export const getUserLocation = () => {
