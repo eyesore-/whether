@@ -3,7 +3,8 @@ import {
   geocode,
   weather,
   parseGeocode,
-  setLocalStorage
+  setLocalStorage,
+  shouldUpdate
 } from '../helper/util'
 
 export const getLocation = location => ({
@@ -20,25 +21,28 @@ export const getWeather = weather => ({
 export const getDataAsync = () => dispatch => {
   getUserLocation()
     .then(location => {
-      geocode(location.lat, location.lng)
+      if (shouldUpdate(location.lat, location.lng)) {
+        geocode(location.lat, location.lng)
         .then(({results}) => {
-          dispatch(
-            getLocation(parseGeocode(results[0].address_components))
-          )
-        })
-      let lastUpdate = localStorage.updated
-        ? JSON.parse(localStorage.updated) : undefined
-      if (!lastUpdate || Date.now() > lastUpdate + 6e5) {
-        return weather(location.lat, location.lng)
-          .then(data => {
-            setLocalStorage({
-              weather: JSON.stringify(data),
-              updated: Date.now()
-            })
-            dispatch(getWeather(data))
+          let locality = parseGeocode(results[0].address_components)
+          setLocalStorage({
+            locality: JSON.stringify(locality),
+            location: `${location.lat},${location.lng}`
           })
+          dispatch(getLocation(locality))
+        })
+        weather(location.lat, location.lng)
+        .then(data => {
+          setLocalStorage({
+            weather: JSON.stringify(data),
+            updated: Date.now()
+          })
+          dispatch(getWeather(data))
+        })
+      } else {
+        dispatch(getLocation(JSON.parse(localStorage.locality)))
+        dispatch(getWeather(JSON.parse(localStorage.weather)))
       }
-      dispatch(getWeather(JSON.parse(localStorage.weather)))
     })
 }
 
