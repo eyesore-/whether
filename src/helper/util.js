@@ -54,7 +54,7 @@ export const shouldUpdate = (location) => {
     : undefined
 
   return setLocation !== location ||
-      lastUpdated ||
+      !!lastUpdated ||
       Date.now() >= lastUpdated + 6e5
 }
 
