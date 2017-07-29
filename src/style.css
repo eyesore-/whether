@@ -14,3 +14,15 @@ div {
 .hour div {
   display: inline-block;
 }
+
+.daily-forecast div {
+  display: inline-block;
+}
+
+.day div {
+  display: block;
+}
+
+.day-temp div {
+  display: inline-block;
+}
