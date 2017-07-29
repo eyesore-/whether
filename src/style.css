@@ -7,10 +7,10 @@ div {
 }
 
 .hourly-forecast {
-  width: 500vw;
+  height: 250px;
   overflow: scroll;
 }
 
-.hour {
+.hour div {
   display: inline-block;
 }
