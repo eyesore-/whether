@@ -2,6 +2,8 @@
 import React from 'react'
 
 const Temperature = ({temperature}) =>
-  <div>{Math.round(temperature)}</div>
+  <div
+    className={`temp-${Math.floor(temperature / 10)}`}
+    >{Math.round(temperature)}</div>
 
 export default Temperature
