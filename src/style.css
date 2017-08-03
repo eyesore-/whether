@@ -26,3 +26,18 @@ div {
 .day-temp div {
   display: inline-block;
 }
+
+
+/**/ Temperature scale
+
+.temp-0 { color: #E3F2FD; }
+.temp-1 { color: #BBDEFB; }
+.temp-2 { color: #90CAF9; }
+.temp-3 { color: #64B5F6; }
+.temp-4 { color: #42A5F5; }
+.temp-5 { color: #2196F3; }
+.temp-6 { color: #FFCC80; }
+.temp-7 { color: #FFB74D; }
+.temp-8 { color: #FF7043; }
+.temp-9 { color: #F4511E; }
+.temp-10 { color: #D84315; }
