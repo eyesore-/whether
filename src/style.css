@@ -41,3 +41,39 @@ div {
 .temp-8 { color: #FF7043; }
 .temp-9 { color: #F4511E; }
 .temp-10 { color: #D84315; }
+
+/**/ Loading screen
+
+.ball {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px;
+  animation: 2s bounce ease infinite;
+}
+
+.white {
+  background-color: #E3F2FD;
+}
+
+.blue {
+  background-color: #42A5F5;
+  animation-delay: .25s;
+}
+
+.yellow {
+  background-color: #FFB74D;
+  animation-delay: .5s;
+}
+
+.red {
+  background-color:#D84315;
+  animation-delay: .75s;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(25px);
+    }
+}
